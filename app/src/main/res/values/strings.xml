@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HQMonitorKotlinSample</string>
+    <string name="requesting_grps">Requesting groups...</string>
+    <string name="empty">Still empty. Try again later!</string>
+    <string name="not_initialized">HQM is not initialized yet.</string>
+    <string name="click_me">Click me</string>
+</resources>
