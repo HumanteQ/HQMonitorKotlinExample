@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/humanteq/hqm-sdk/hqm-core/images/download.svg?version=2.0.0-alpha05-fix2) ](https://bintray.com/humanteq/hqm-sdk/hqm-core/2.0.0-alpha05-fix2/link)
+[ ![Download](https://api.bintray.com/packages/humanteq/hqm-sdk/hqm-core/images/download.svg?version=2.0.0-beta01) ](https://bintray.com/humanteq/hqm-sdk/hqm-core/2.0.0-beta01/link)
 
 ### HQMonitor Kotlin Sample App.
 
@@ -21,7 +21,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.0.0-alpha05-fix2' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.0.0-beta01' <--
 }
 ```
 3. Sync project and initialize SDK:
