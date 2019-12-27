@@ -83,11 +83,11 @@ class App : Application() {
 To comply with GDPR, we provide following user data management methods:
 1. Request for user data. 
 A report with current user data will be sent to the provided email.
-```csharp
-            HQSdk.RequestUserData("some@email.org");
+```kotlin
+            HQSdk.requestUserData("some@email.org")
 ```
 
 2. User data deletion request. All current user data will be deleted from Humanteq servers.
-```csharp
-            HQSdk.DeleteUserData();
+```kotlin
+            HQSdk.deleteUserData()
 ```
