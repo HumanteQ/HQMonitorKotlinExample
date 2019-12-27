@@ -1,8 +1,8 @@
-[ ![Download](https://api.bintray.com/packages/humanteq/hqm-sdk/hqm-core/images/download.svg?version=2.0.0-beta01) ](https://bintray.com/humanteq/hqm-sdk/hqm-core/2.0.0-beta01/link)
+[ ![Download](https://api.bintray.com/packages/humanteq/hqm-sdk/hqm-core/images/download.svg) ](https://bintray.com/humanteq/hqm-sdk/hqm-core/_latestVersion)
 
-### HQMonitor Kotlin Sample App.
+## HQMonitor Kotlin Sample App.
 
-##### SDK integration steps:
+#### SDK integration steps:
 
 1. Add `hqm-sdk` repository to `/<project_path>/build.gradle`:
 ```groovy
@@ -21,7 +21,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.0.0-beta01' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.0.0' <--
 }
 ```
 3. Sync project and initialize SDK:
@@ -42,6 +42,9 @@ class App : Application() {
                     }
 
                     override fun onSuccess(p0: Unit?) {
+                        // Get user id
+                        val uuid = HQSdk.getUuid()
+                    
                         // Request predicted user groups
                         HQSdk.getUserGroupsAsync(this@App, object : HQCallback<List<UserGroup>> {
                             override fun onSuccess(groupList: List<UserGroup>?) {
@@ -66,6 +69,25 @@ class App : Application() {
                 Pair("test_param2", "test_value2")
         ))
         
+        // Request user data
+        HQSdk.requestUserData("my@email.org")
+
+        // Request user data deletion
+        HQSdk.deleteUserData()
     }
 }
+```
+
+
+#### GDPR compliance.
+To comply with GDPR, we provide following user data management methods:
+1. Request for user data. 
+A report with current user data will be sent to the provided email.
+```csharp
+            HQSdk.RequestUserData("some@email.org");
+```
+
+2. User data deletion request. All current user data will be deleted from Humanteq servers.
+```csharp
+            HQSdk.DeleteUserData();
 ```

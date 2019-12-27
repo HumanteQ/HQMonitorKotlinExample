@@ -20,6 +20,9 @@ class App : Application() {
                 }
 
                 override fun onSuccess(p0: Unit?) {
+                    // Get user id
+                    val uuid = HQSdk.getUuid()
+
                     // Request predicted user groups
                     HQSdk.getUserGroupsAsync(this@App, object : HQCallback<List<UserGroup>> {
                         override fun onSuccess(groupList: List<UserGroup>?) {
@@ -44,5 +47,11 @@ class App : Application() {
                 Pair("test_param2", "test_value2")
             )
         )
+
+        // Request user data
+        HQSdk.requestUserData("my@email.org")
+
+        // Request user data deletion
+        HQSdk.deleteUserData()
     }
 }
