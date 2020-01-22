@@ -3,9 +3,9 @@ package io.humanteq.test_package
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import io.humanteq.hqsdkcore.HQSdk
-import io.humanteq.hqsdkcore.api.interfaces.HqmCallback
-import io.humanteq.hqsdkcore.models.GroupResponse
+import io.humanteq.hq_core.HQSdk
+import io.humanteq.hq_core.interfaces.HQCallback
+import io.humanteq.hq_core.models.UserGroup
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,29 +22,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getGroups() {
-        if (!HQSdk.isInitialized) {
-            grp_tv.text = getString(R.string.not_initialized)
-            return
-        }
-
-        HQSdk.getUserGroups(this, object : HqmCallback<List<GroupResponse>> {
-            override fun onSuccess(data: List<GroupResponse>) {
-                data
-                    .map { it.segment_name }
+        HQSdk.getUserGroupsAsync(this, object : HQCallback<List<UserGroup>> {
+            override fun onSuccess(data: List<UserGroup>?) {
+                data?.apply {
+                    map { it.segment_name }
                     .joinToString(separator = "\n") { it }
                     .ifEmpty { getString(R.string.empty) }
                     .apply { grp_tv.text = this }
-
+                }
             }
 
-            override fun onError(exception: Throwable) {
-                exception.printStackTrace()
-                grp_tv.text = exception.localizedMessage
-                Toast.makeText(
-                    this@MainActivity,
-                    "Error occured: ${exception.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+            override fun onError(exception: Throwable?) {
+                exception?.apply {
+                    exception.printStackTrace()
+                    grp_tv.text = exception.localizedMessage
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Error occured: ${exception.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         })
     }
