@@ -21,7 +21,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.0.1' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.0.3-fix1' <--
 }
 ```
 3. Sync project and initialize SDK:
@@ -74,6 +74,9 @@ class App : Application() {
 
         // Request user data deletion
         HQSdk.deleteUserData()
+
+        // Send target segments to Firebase Analytics. Firebase Analytics dependency must be imported separately. 
+        HQSdk.trackSegments(true)
     }
 }
 ```

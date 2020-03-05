@@ -53,5 +53,8 @@ class App : Application() {
 
         // Request user data deletion
         HQSdk.deleteUserData()
+
+        // Send target segments to Firebase Analytics. Firebase Analytics dependency must be imported separately.
+        HQSdk.trackSegments(true)
     }
 }
