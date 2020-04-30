@@ -21,7 +21,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.0.3-fix1' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.0.5' <--
 }
 ```
 3. Sync project and initialize SDK:
