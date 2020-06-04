@@ -56,5 +56,19 @@ class App : Application() {
 
         // Send target segments to Firebase Analytics. Firebase Analytics dependency must be imported separately.
         HQSdk.trackSegments(true)
+
+        // Send predefined event `inAppPurchase(revenue: Int, currency: String, item_name: String)`.
+        // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
+        HQSdk.inAppPurchase(75, "EUR", "Useful item name");
+
+        // Send predefined event `subscriptionPurchase(revenue: Int, currency: String, item_name: String, status: String)`.
+        // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
+        // `status`      - state of purchase event (trial/first/renewal/...)
+        HQSdk.subscriptionPurchase(75, "EUR", "Useful item name", "trial");
+
+        // Send predefined event `tutorialStep(step: String, result: String)`.
+        // `step`        - a current step of tutorial
+        // `result`      - a result of the current step
+        HQSdk.tutorialStep("tutorial_step_1", "start");
     }
 }

@@ -16,14 +16,25 @@ allprojects {
 ```
 2. Add `hqm-core` dependency to `/<project_path>/app/build.gradle`:
 ```groovy
+android {
+    ...
+    
+    // HQSdk requires at minimum Java 8+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+} 
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.0.5' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.0.6-alpha02' <--
 }
 ```
+
 3. Sync project and initialize SDK:
 ```kotlin
 class App : Application() {
@@ -77,6 +88,20 @@ class App : Application() {
 
         // Send target segments to Firebase Analytics. Firebase Analytics dependency must be imported separately. 
         HQSdk.trackSegments(true)
+
+        // Send predefined event `inAppPurchase(int revenue, String currency, String item_name)`.
+        // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
+        HQSdk.inAppPurchase(75, "EUR", "Useful item name");
+
+        // Send predefined event `subscriptionPurchase(int revenue, String currency, String item_name, String status)`.
+        // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
+        // `status`      - state of purchase event (trial/first/renewal/...)
+        HQSdk.subscriptionPurchase(75, "EUR", "Useful item name", "trial");
+        
+        // Send predefined event `tutorialStep(String step, String result)`.
+        // `step`        - a current step of tutorial
+        // `result`      - a result of the current step
+        HQSdk.tutorialStep("tutorial_step_1", "start");
     }
 }
 ```
