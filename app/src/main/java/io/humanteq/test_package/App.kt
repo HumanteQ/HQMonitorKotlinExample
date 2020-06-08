@@ -3,6 +3,7 @@ package io.humanteq.test_package
 import android.app.Application
 import io.humanteq.hq_core.HQSdk
 import io.humanteq.hq_core.interfaces.HQCallback
+import io.humanteq.hq_core.main.HQApi
 import io.humanteq.hq_core.models.UserGroup
 
 class App : Application() {
@@ -56,6 +57,9 @@ class App : Application() {
 
         // Send target segments to Firebase Analytics. Firebase Analytics dependency must be imported separately.
         HQSdk.trackSegments(true)
+
+        // Send target segments to AppsFlyer.
+        HQSdk.trackSegments(true, HQApi.EventTracker.AppsFlyer)
 
         // Send predefined event `inAppPurchase(revenue: Int, currency: String, item_name: String)`.
         // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)

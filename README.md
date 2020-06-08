@@ -31,7 +31,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.0.6-alpha02' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.1.0' <--
 }
 ```
 
@@ -88,6 +88,9 @@ class App : Application() {
 
         // Send target segments to Firebase Analytics. Firebase Analytics dependency must be imported separately. 
         HQSdk.trackSegments(true)
+
+        // Send target segments to AppsFlyer.
+        HQSdk.trackSegments(true, HQApi.EventTracker.AppsFlyer)
 
         // Send predefined event `inAppPurchase(int revenue, String currency, String item_name)`.
         // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
