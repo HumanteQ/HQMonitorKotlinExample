@@ -31,7 +31,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.1.0' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.1.1' <--
 }
 ```
 
@@ -109,7 +109,13 @@ class App : Application() {
 }
 ```
 
+<br>
+#### Proguard and R8.
+If you are using R8 no additional steps are required.  
+If you are using Proguard you might want to add [proguard-rules](https://raw.githubusercontent.com/HumanteQ/HQMonitorKotlinExample/master/app/proguard-rules.pro) in your `proguard-rules.pro` file. 
 
+
+<br>
 #### GDPR compliance.
 To comply with GDPR, we provide following user data management methods:
 1. Request for user data. 
