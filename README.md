@@ -31,7 +31,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.1.1' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.1.2' <--
 }
 ```
 
