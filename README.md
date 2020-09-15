@@ -108,6 +108,11 @@ class App : Application() {
     }
 }
 ```
+<br>
+
+#### Kochava attribution.
+
+To enable Kochava attribution tracking you must setup Kochava attribution listener before launching HQSdk. Please follow these [steps](https://support.kochava.com/sdk-integration/android-sdk-integration/android-using-the-sdk/?scrollto=marker_8#collapseRetrievingAttribution).
 
 <br>
 
