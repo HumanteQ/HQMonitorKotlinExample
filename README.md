@@ -31,7 +31,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.1.10' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.2.0' <--
 }
 ```
 
@@ -43,6 +43,7 @@ class App : Application() {
     	super.onCreate()
         
         // Initialize SDK
+        // Should be called only after obtaining user consent
         HQSdk.init(
                 this,
                 "your_api_key",
@@ -67,9 +68,6 @@ class App : Application() {
                     }
                 }
         )
-
-        // Start SDK
-        HQSdk.start(this)
 
         // Send event as a text ...
         HQSdk.logEvent("test_event", "test")
