@@ -19,10 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url 'https://dl.bintray.com/humanteq/HQM/'
-        }
-        maven { url 'https://dl.bintray.com/humanteq/hqm-sdk/' }
+        maven { url 'https://repo.repsy.io/mvn/humanteq/hqsdk' }
     }
 }
 

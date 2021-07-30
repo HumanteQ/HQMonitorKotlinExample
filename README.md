@@ -11,7 +11,7 @@ allprojects {
         google()
         jcenter()
         ...
-        maven { url 'https://dl.bintray.com/humanteq/hqm-sdk/' }  <--
+        maven { url 'https://repo.repsy.io/mvn/humanteq/hqsdk' }  <--
     }
 ```
 2. Add `hqm-core` dependency to `/<project_path>/app/build.gradle`:
