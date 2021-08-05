@@ -1,5 +1,3 @@
-[ ![Download](https://api.bintray.com/packages/humanteq/hqm-sdk/hqm-core/images/download.svg) ](https://bintray.com/humanteq/hqm-sdk/hqm-core/_latestVersion)
-
 ## HQMonitor Kotlin Sample App.
 
 #### SDK integration steps:
@@ -11,41 +9,64 @@ allprojects {
         google()
         jcenter()
         ...
-        maven { url 'https://repo.repsy.io/mvn/humanteq/hqsdk' }  <--
+        maven { url 'https://repo.repsy.io/mvn/humanteq/hqsdk' } < --
     }
 ```
 2. Add `hqm-core` dependency to `/<project_path>/app/build.gradle`:
 ```groovy
 android {
     ...
-    
-    // HQSdk requires at minimum Java 8+
+
+    // HQSdk requires at minimum Java 11
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-} 
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    
+
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.2.0' <--
+    implementation 'io.humanteq.hqm:hqm-core:2.3.0' < --
 }
 ```
 
-3. Sync project and initialize SDK:
+3. Skip this step if your `targetSdkVersion` < 30 .
+
+Otherwise place `QUERY_ALL_PACKAGES` permission in your AndroidManifest.xml:
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.sample.app">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    ...
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+
+    <application>
+        ...
+
+    </application>
+</manifest>
+```
+In order to comply with Google Play policy you also have to declare this permission using the
+Declaration Form in Play
+Console. [More info](https://support.google.com/googleplay/android-developer/answer/10158779?hl=en)
+
+4. Sync project and initialize SDK:
+
 ```kotlin
 class App : Application() {
 
     override fun onCreate() {
-    	super.onCreate()
-        
+        super.onCreate()
+
         // Initialize SDK
         // Should be called only after obtaining user consent
         HQSdk.init(
-                this,
+            this,
                 "your_api_key",
                 BuildConfig.DEBUG,
                 object : HQCallback<Unit> {
@@ -92,12 +113,12 @@ class App : Application() {
 
         // Send predefined event `inAppPurchase(int revenue, String currency, String item_name)`.
         // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
-        HQSdk.inAppPurchase(75, "EUR", "Useful item name");
+        HQSdk.inAppPurchase(75.0, "EUR", "Useful item name");
 
         // Send predefined event `subscriptionPurchase(int revenue, String currency, String item_name, String status)`.
         // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
         // `status`      - state of purchase event (trial/first/renewal/...)
-        HQSdk.subscriptionPurchase(75, "EUR", "Useful item name", "trial");
+        HQSdk.subscriptionPurchase(75.0, "EUR", "Useful item name", "trial");
         
         // Send predefined event `tutorialStep(String step, String result)`.
         // `step`        - a current step of tutorial
