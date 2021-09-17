@@ -29,7 +29,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     ...
-    implementation 'io.humanteq.hqm:hqm-core:2.3.0' < --
+    implementation 'io.humanteq.hqm:hqm-core:2.3.2' < --
 }
 ```
 
@@ -69,6 +69,7 @@ class App : Application() {
             this,
                 "your_api_key",
                 BuildConfig.DEBUG,
+                true, // Enable Advertising ID tracking
                 object : HQCallback<Unit> {
                     override fun onError(ex: Throwable?) {
 
@@ -90,6 +91,11 @@ class App : Application() {
                 }
         )
 
+        // Enable Advertising ID tracking (if previously has been disabled)
+        HQSdk.setId(this, null)
+        // Or set custom id
+        HQSdk.setId(this, "custom_id")
+        
         // Send event as a text ...
         HQSdk.logEvent("test_event", "test")
 

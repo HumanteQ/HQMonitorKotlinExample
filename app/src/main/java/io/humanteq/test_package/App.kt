@@ -35,8 +35,6 @@ class App : Application() {
                     }
                 }
         )
-        // Start SDK
-        HQSdk.start(this)
 
         // Send event as a text ...
         HQSdk.logEvent("test_event", "test")
@@ -63,12 +61,12 @@ class App : Application() {
 
         // Send predefined event `inAppPurchase(revenue: Int, currency: String, item_name: String)`.
         // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
-        HQSdk.inAppPurchase(75.0, "EUR", "Useful item name");
+        HQSdk.inAppPurchase(75, "EUR", "Useful item name");
 
         // Send predefined event `subscriptionPurchase(revenue: Int, currency: String, item_name: String, status: String)`.
         // `currency`    - a string representing a currency id in ISO 4217 format (https://www.currency-iso.org/dam/downloads/lists/list_one.xml)
         // `status`      - state of purchase event (trial/first/renewal/...)
-        HQSdk.subscriptionPurchase(75.0, "EUR", "Useful item name", "trial");
+        HQSdk.subscriptionPurchase(75, "EUR", "Useful item name", "trial");
 
         // Send predefined event `tutorialStep(step: String, result: String)`.
         // `step`        - a current step of tutorial
